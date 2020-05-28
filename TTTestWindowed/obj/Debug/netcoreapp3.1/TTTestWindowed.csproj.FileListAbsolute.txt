@@ -27,3 +27,16 @@ C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\obj\Debug\netc
 C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\obj\Debug\netcoreapp3.1\TTTestWindowed_MarkupCompile.lref
 C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\obj\Debug\netcoreapp3.1\TTTestWindowed.dll
 C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\obj\Debug\netcoreapp3.1\TTTestWindowed.pdb
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\bin\Debug\netcoreapp3.1\TTTestWindowed.exe
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\bin\Debug\netcoreapp3.1\TTTestWindowed.deps.json
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\bin\Debug\netcoreapp3.1\TTTestWindowed.runtimeconfig.json
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\bin\Debug\netcoreapp3.1\TTTestWindowed.runtimeconfig.dev.json
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\bin\Debug\netcoreapp3.1\TTTestWindowed.dll
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\bin\Debug\netcoreapp3.1\TTTestWindowed.pdb
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\obj\Debug\netcoreapp3.1\MainWindow.baml
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\obj\Debug\netcoreapp3.1\TTTestWindowed.g.resources
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\obj\Debug\netcoreapp3.1\TTTestWindowed.AssemblyInfoInputs.cache
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\obj\Debug\netcoreapp3.1\TTTestWindowed.AssemblyInfo.cs
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\obj\Debug\netcoreapp3.1\TTTestWindowed.csproj.CopyComplete
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\obj\Debug\netcoreapp3.1\TTTestWindowed.genruntimeconfig.cache
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\bin\Debug\netcoreapp3.1\Microsoft.mshtml.dll

@@ -215,7 +215,12 @@ namespace TTTestWindowed
             {
                 return;
             }
+
+
+
             DisableSubControlGroup(catogorizationGroup);
+
+            
 
             try
             {

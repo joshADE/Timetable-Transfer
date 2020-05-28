@@ -8,23 +8,15 @@
     ".NETCoreApp,Version=v3.1": {
       "TTTestWindowed/1.0.0": {
         "dependencies": {
-          "TTTest": "1.0.0.0"
+          "Unofficial.Microsoft.mshtml": "7.0.3300"
         },
         "runtime": {
           "TTTestWindowed.dll": {}
         }
       },
-      "TTTest/1.0.0.0": {
+      "Unofficial.Microsoft.mshtml/7.0.3300": {
         "runtime": {
-          "TTTest.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "Microsoft.mshtml/7.0.3300.0": {
-        "runtime": {
-          "Microsoft.mshtml.dll": {
+          "lib/net40/Microsoft.mshtml.dll": {
             "assemblyVersion": "7.0.3300.0",
             "fileVersion": "7.0.3300.1"
           }
@@ -38,15 +30,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "TTTest/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Microsoft.mshtml/7.0.3300.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
+    "Unofficial.Microsoft.mshtml/7.0.3300": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Nv4Bn/0y8ab6f5QnEXoDX49C0U4Iz2nPgHbyg35UV+cGoFS5QkPWNwp461cOEK1O0c/u8TXQ3THP3rdEHmhjtg==",
+      "path": "unofficial.microsoft.mshtml/7.0.3300",
+      "hashPath": "unofficial.microsoft.mshtml.7.0.3300.nupkg.sha512"
     }
   }
 }

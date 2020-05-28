@@ -40,6 +40,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Unofficial.Microsoft.mshtml": {
+              "target": "Package",
+              "version": "[7.0.3300, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

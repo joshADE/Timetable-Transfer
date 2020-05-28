@@ -7,9 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="TTTest">
-      <HintPath>..\..\..\..\source\repos\TTTest\TTTest\obj\Debug\netcoreapp3.1\TTTest.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Unofficial.Microsoft.mshtml" Version="7.0.3300" />
   </ItemGroup>
 
 </Project>

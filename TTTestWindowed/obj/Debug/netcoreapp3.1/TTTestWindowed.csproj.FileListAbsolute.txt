@@ -20,3 +20,10 @@ C:\Users\josh_\source\repos\TTTestWindowed\TTTestWindowed\bin\Debug\netcoreapp3.
 C:\Users\josh_\source\repos\TTTestWindowed\TTTestWindowed\bin\Debug\netcoreapp3.1\Microsoft.mshtml.dll
 C:\Users\josh_\source\repos\TTTestWindowed\TTTestWindowed\bin\Debug\netcoreapp3.1\TTTest.pdb
 C:\Users\josh_\source\repos\TTTestWindowed\TTTestWindowed\obj\Debug\netcoreapp3.1\TTTestWindowed.csproj.CopyComplete
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\obj\Debug\netcoreapp3.1\TTTestWindowed.csprojAssemblyReference.cache
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\obj\Debug\netcoreapp3.1\MainWindow.g.cs
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\obj\Debug\netcoreapp3.1\App.g.cs
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\obj\Debug\netcoreapp3.1\TTTestWindowed_MarkupCompile.cache
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\obj\Debug\netcoreapp3.1\TTTestWindowed_MarkupCompile.lref
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\obj\Debug\netcoreapp3.1\TTTestWindowed.dll
+C:\Users\josh_\Documents\GitHub\Timetable-Transfer\TTTestWindowed\obj\Debug\netcoreapp3.1\TTTestWindowed.pdb

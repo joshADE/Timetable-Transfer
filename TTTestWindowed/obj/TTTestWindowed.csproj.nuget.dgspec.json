@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\josh_\\source\\repos\\TTTestWindowed\\TTTestWindowed\\TTTestWindowed.csproj": {}
+    "C:\\Users\\josh_\\Documents\\GitHub\\Timetable-Transfer\\TTTestWindowed\\TTTestWindowed.csproj": {}
   },
   "projects": {
-    "C:\\Users\\josh_\\source\\repos\\TTTestWindowed\\TTTestWindowed\\TTTestWindowed.csproj": {
+    "C:\\Users\\josh_\\Documents\\GitHub\\Timetable-Transfer\\TTTestWindowed\\TTTestWindowed.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\josh_\\source\\repos\\TTTestWindowed\\TTTestWindowed\\TTTestWindowed.csproj",
+        "projectUniqueName": "C:\\Users\\josh_\\Documents\\GitHub\\Timetable-Transfer\\TTTestWindowed\\TTTestWindowed.csproj",
         "projectName": "TTTestWindowed",
-        "projectPath": "C:\\Users\\josh_\\source\\repos\\TTTestWindowed\\TTTestWindowed\\TTTestWindowed.csproj",
+        "projectPath": "C:\\Users\\josh_\\Documents\\GitHub\\Timetable-Transfer\\TTTestWindowed\\TTTestWindowed.csproj",
         "packagesPath": "C:\\Users\\josh_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\josh_\\source\\repos\\TTTestWindowed\\TTTestWindowed\\obj\\",
+        "outputPath": "C:\\Users\\josh_\\Documents\\GitHub\\Timetable-Transfer\\TTTestWindowed\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

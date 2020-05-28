@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Reference Include="TTTest">
-      <HintPath>..\..\TTTest\TTTest\bin\Debug\netcoreapp3.1\TTTest.dll</HintPath>
+      <HintPath>..\..\..\..\source\repos\TTTest\TTTest\obj\Debug\netcoreapp3.1\TTTest.dll</HintPath>
     </Reference>
   </ItemGroup>
 

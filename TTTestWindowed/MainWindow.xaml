@@ -51,8 +51,8 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <ScrollViewer x:Name="scrollResult" Margin="156,166,218,217">
-            <TextBlock x:Name="tblockResult" TextWrapping="Wrap" IsEnabled="False" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Height="110" Width="712"/>
+        <ScrollViewer x:Name="scrollResult" Margin="156,166,231,217">
+            <TextBlock x:Name="tblockResult" TextWrapping="Wrap" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Height="110" Width="712"/>
         </ScrollViewer>
         <ScrollViewer x:Name="scrollInstruction" Width="200" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,36,0,0">
             <TextBlock x:Name="tblockInstructions" TextWrapping="Wrap" Height="95" Width="186" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" IsEnabled="False"/>
@@ -104,7 +104,7 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </ScrollViewer.RenderTransform>
-            <ListBox x:Name="lboxSorter"  RenderTransformOrigin="0.592,0.528" Height="118" Width="114" IsSynchronizedWithCurrentItem="True"/>
+            <ListBox x:Name="lboxSorter"  RenderTransformOrigin="0.592,0.528" Height="118" Width="114" IsSynchronizedWithCurrentItem="True" />
         </ScrollViewer>
         <Button x:Name="btnSetCategory" Content="Set Category" HorizontalAlignment="Left" Margin="535,303,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Click="btnSetCategory_Click">
             <Button.RenderTransform>

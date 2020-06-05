@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,17 +27,63 @@ namespace TTTestWindowed
         List<GCalenderEntry> courses;
         //List<string> regexResult;    // used for storing the result from the regex filter
         List<int> regexResultCourseIndicator;
-        List<KeyValuePair<string, int>> sortList;
+        //List<KeyValuePair<string, int>> sortList;
+        SortListItemCollection sortList;
         int numberOfDefaultCategories;
+        string htmlContentField;
 
         public bool IntelligentMatch { get; set; }
+
+        public class SortListItemCollection : IEnumerable<string>
+        {
+            List<KeyValuePair<string, int>> keyValuePairs;
+            List<string> keys;
+           
+            public KeyValuePair<string,int> this[int index]
+            {
+                get => keyValuePairs[index];
+                set { 
+                    keyValuePairs[index] = value;
+                    keys[index] = value.Key;
+                    }
+            }
+
+            public int Count { get => keys.Count; }
+
+            public SortListItemCollection()
+            {
+                keyValuePairs = new List<KeyValuePair<string, int>>();
+                keys = new List<string>();
+
+            }
+            public IEnumerator<string> GetEnumerator()
+            {
+                return keys.GetEnumerator();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+
+            internal void Clear()
+            {
+                keyValuePairs.Clear();
+                keys.Clear();
+            }
+
+            internal void Add(KeyValuePair<string, int> keyValuePair)
+            {
+                keyValuePairs.Add(keyValuePair);
+                keys.Add(keyValuePair.Key);
+            }
+        }
 
 
         private void SetupBindings()
         {
             courseList = new List<string>();
             lboxCourses.ItemsSource = courseList;
-            //AddItemToScrollList<string>("PROG 9921", scrollCourses, lboxCourses, courseList);
 
 
             categoryList = new List<string>() { "none", "CourseCode" };
@@ -44,11 +91,13 @@ namespace TTTestWindowed
             numberOfDefaultCategories = categoryList.Count;
             lboxCategory.ItemsSource = categoryList;
 
-            sortList = new List<KeyValuePair<string, int>>();
+            //sortList = new List<KeyValuePair<string, int>>();
+            sortList = new SortListItemCollection();
             //regexResult = new List<string>();
             //lboxSorter.ItemsSource = regexResult;
             //lboxSorterCategories = new List<int>(); // parallel to regexResult shows the categories of the item
             lboxSorter.ItemsSource = sortList;
+            
             regexResultCourseIndicator = new List<int>();
             courseInfo = new List<Dictionary<string, string>>();
             //lboxSorter.ItemStringFormat = "{}{0}";
@@ -80,6 +129,22 @@ namespace TTTestWindowed
         private void ResetInstructions()
         {
             tblockInstructions.Text = "Messages Will Appear Here";
+        }
+
+        private void AddItemToScrollList<T>(T item, ListBox listBox, List<T> bindedList)
+        {
+            bindedList.Add(item);
+            listBox.Items.Refresh();
+            
+            listBox.SelectedIndex = listBox.Items.Count - 1;
+            listBox.ScrollIntoView(listBox.SelectedItem);
+        }
+
+        private void RemoveItemFromScrollList<T>(int removeIndex, ListBox listBox, List<T> bindedList)
+        {
+            bindedList.RemoveAt(removeIndex);
+            listBox.Items.Refresh();
+            
         }
 
         private void AddItemToScrollList<T>(T item, ScrollViewer viewer, ListBox listBox, List<T> bindedList)
@@ -147,7 +212,7 @@ namespace TTTestWindowed
             //lboxSorterCategories.Clear();
             sortList.Clear();
             lboxSorter.Items.Refresh();
-            scrollSorter.UpdateLayout();
+            //scrollSorter.UpdateLayout();
             regexResultCourseIndicator.Clear();
         }
 
@@ -155,7 +220,7 @@ namespace TTTestWindowed
         {
             courseList.Clear();
             lboxCourses.Items.Refresh();
-            scrollCourses.UpdateLayout();
+            //scrollCourses.UpdateLayout();
         }
 
 
@@ -224,8 +289,9 @@ namespace TTTestWindowed
 
             try
             {
-                var pagecontents = TTTest.HTMLParser.RetrieveInnerTextContent(TTTest.HTMLParser.RetrieveContenet(url));
-                tblockResult.Text = pagecontents;
+                htmlContentField = TTTest.HTMLParser.RetrieveInnerTextContent(TTTest.HTMLParser.RetrieveContenet(url));
+                
+                tblockResult.Text = htmlContentField;
             }
             catch (UriFormatException)
             {
@@ -257,7 +323,7 @@ namespace TTTestWindowed
                 return;
             }
             DisableSubControlGroup(catogorizationGroup);
-            AddItemToScrollList<string>(course, scrollCourses, lboxCourses, courseList);
+            AddItemToScrollList<string>(course, lboxCourses, courseList);
             tbCourse.Clear();
         }
 
@@ -267,24 +333,27 @@ namespace TTTestWindowed
             var item = lboxCourses.SelectedIndex;
             if (item >= 0)
             {
-                RemoveItemFromScrollList<string>(item, scrollCourses, lboxCourses, courseList);
+                RemoveItemFromScrollList<string>(item, lboxCourses, courseList);
             }
         }
 
         private void btnFilter_Click(object sender, RoutedEventArgs e)
         {
-            var htmlContent = tblockResult.Text.Trim();
-            if (string.IsNullOrEmpty(htmlContent))
+
+            
+            if (string.IsNullOrEmpty(htmlContentField))
             {
                 tblockInstructions.Text = "You need to get the content from the url first.";
                 return;
             }
-
+            
             if (courseList.Count == 0) 
             {
                 tblockInstructions.Text = "You need add the course code to search/filter for.";
                 return;
             }
+
+            htmlContentField = htmlContentField.Trim();
 
             EnableSubControlGroup(catogorizationGroup);
             ResetCatogorizationControls();
@@ -353,7 +422,7 @@ namespace TTTestWindowed
                 return;
             }
             if(category >= 0)
-            RemoveItemFromScrollList<string>(category, scrollCategory, lboxCategory, categoryList);
+            RemoveItemFromScrollList<string>(category, lboxCategory, categoryList);
 
             
         }
@@ -366,7 +435,7 @@ namespace TTTestWindowed
             {
                 return;
             }
-            AddItemToScrollList<string>(category, scrollCategory, lboxCategory, categoryList);
+            AddItemToScrollList<string>(category, lboxCategory, categoryList);
             tbCategory.Clear();
         }
 
@@ -376,7 +445,7 @@ namespace TTTestWindowed
             var index = lboxSorter.SelectedIndex;
             var category = lboxCategory.SelectedIndex;
 
-            if (!WithinBoundsOfItems(index, sortList))
+            if (!(index >= 0 && index < sortList.Count))
             {
                 tblockInstructions.Text = "Make sure to select an item to categorize in the list.";
                 return;
@@ -394,7 +463,7 @@ namespace TTTestWindowed
             tblockInstructions.Text = "Success!";
 
             lboxSorter.SelectedIndex += 1;
-            scrollSorter.UpdateLayout();
+            //scrollSorter.UpdateLayout();
             lboxSorter.UpdateLayout();
             lboxSorter.ScrollIntoView(lboxSorter.SelectedItem);
             
@@ -458,7 +527,7 @@ namespace TTTestWindowed
             var index = lboxSorter.SelectedIndex;
             
 
-            if (!WithinBoundsOfItems(index, sortList))
+            if (!(index >= 0 && index < sortList.Count))
             {
                 tblockInstructions.Text = "Make sure to select the item to retrieve the category of in the list.";
                 return;
@@ -476,14 +545,20 @@ namespace TTTestWindowed
 
             tblockInstructions.Text = "Success!";
             lblGetCategory.Content = categoryList[category];
-            lboxCategory.SelectedIndex = category;
-            lboxCategory.Items.Refresh();
-            lboxCategory.UpdateLayout();
-            lboxCategory.ScrollIntoView(lboxCategory.SelectedItem);
 
+            if (sender == btnGetCategory)
+            {
+                
+                lboxCategory.SelectedIndex = index;
+                lboxCategory.Items.Refresh();
+                lboxCategory.UpdateLayout();
+                lboxCategory.ScrollIntoView(lboxCategory.SelectedItem);
+            }
+            
             lboxSorter.Items.Refresh();
             lboxSorter.UpdateLayout();
             lboxSorter.ScrollIntoView(lboxCategory.SelectedItem);
+
 
         }
 

@@ -5,153 +5,166 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TTTestWindowed"
         mc:Ignorable="d"
-        Title="MainWindow" Height="522" Width="1121">
-    <Grid Background="{DynamicResource {x:Static SystemColors.InactiveCaptionBrushKey}}" Height="495">
-        <Label x:Name="lblInstructions" Content="Instructions" HorizontalAlignment="Left" Height="24" Margin="31,7,0,0" VerticalAlignment="Top" Width="202" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
-        <TextBox x:Name="tbUrl" HorizontalAlignment="Left" Height="24" Margin="349,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="519"/>
-        <Label x:Name="lblUrl" Content="Url" HorizontalAlignment="Left" Margin="254,13,0,0" VerticalAlignment="Top" Width="60" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
-        <Button x:Name="btnGetHTML" Content="Get content from page" HorizontalAlignment="Left" Margin="251,43,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Click="btnGetHTML_Click">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-0.037"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Button.RenderTransform>
-        </Button>
-        <Label x:Name="lblCourses" Content="Course Codes" HorizontalAlignment="Left" Margin="252,74,0,0" VerticalAlignment="Top" Width="80" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" RenderTransformOrigin="0.5,0.5" Height="26">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.279"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <TextBox x:Name="tbCourse" HorizontalAlignment="Left" Margin="349,73,0,396" TextWrapping="Wrap" Width="471"/>
-        <Button x:Name="btnAddCourse" Content="Add Course" HorizontalAlignment="Left" Margin="252,112,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Click="btnAddCourse_Click">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-0.037"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Button.RenderTransform>
-        </Button>
-        <Label x:Name="lblResut" Content="Result from parsing content" HorizontalAlignment="Left" Margin="33,135,0,0" VerticalAlignment="Top" Width="169" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" RenderTransformOrigin="0.5,0.5">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.279"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <ScrollViewer x:Name="scrollResult" Margin="156,166,231,217">
-            <TextBlock x:Name="tblockResult" TextWrapping="Wrap" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Height="110" Width="712"/>
-        </ScrollViewer>
-        <ScrollViewer x:Name="scrollInstruction" Width="200" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,36,0,0">
-            <TextBlock x:Name="tblockInstructions" TextWrapping="Wrap" Height="95" Width="186" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" IsEnabled="False"/>
-        </ScrollViewer>
-        <Button x:Name="btnFilter" HorizontalAlignment="Left" Margin="957,208,0,0" VerticalAlignment="Top" Width="70" Height="70" Click="btnFilter_Click" Content="Filter"/>
-        <ScrollViewer x:Name="scrollCourses" Margin="914,7,51,382" RenderTransformOrigin="0.48,0.48">
-            <ListBox x:Name="lboxCourses" RenderTransformOrigin="0.592,0.528" Height="108" Width="139"/>
-        </ScrollViewer>
-        <ScrollViewer x:Name="scrollCategory" Margin="170,296,832,84" RenderTransformOrigin="0.48,0.48">
-            <ListBox x:Name="lboxCategory" RenderTransformOrigin="0.592,0.528" Height="112" Width="98" IsSynchronizedWithCurrentItem="True"/>
-        </ScrollViewer>
-        <Label x:Name="lblCategory" Content="Categories" HorizontalAlignment="Left" Margin="32,288,0,0" VerticalAlignment="Top" Width="87" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" RenderTransformOrigin="0.5,0.5">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.279"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <TextBox x:Name="tbCategory" HorizontalAlignment="Left" Margin="10,350,0,122" TextWrapping="Wrap" Width="128"/>
-        <Button x:Name="btnAddCategory" Content="Add Category" HorizontalAlignment="Left" Margin="43,385,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.525,0.478" Click="btnAddCategory_Click">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-0.037"/>
-                    <TranslateTransform X="0" Y="-0.001"/>
-                </TransformGroup>
-            </Button.RenderTransform>
-        </Button>
-        <Button x:Name="btnRemoveCategory" Content="Remove Category" HorizontalAlignment="Left" Margin="167,418,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Click="btnRemoveCategory_Click">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-0.037"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Button.RenderTransform>
-        </Button>
-        <ScrollViewer x:Name="scrollSorter" Margin="374,290,613,84" RenderTransformOrigin="0.48,0.48">
-            <ScrollViewer.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </ScrollViewer.RenderTransform>
-            <ListBox x:Name="lboxSorter"  RenderTransformOrigin="0.592,0.528" Height="118" Width="114" IsSynchronizedWithCurrentItem="True" />
-        </ScrollViewer>
-        <Button x:Name="btnSetCategory" Content="Set Category" HorizontalAlignment="Left" Margin="535,303,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Click="btnSetCategory_Click">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="1.382"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Button.RenderTransform>
-        </Button>
-        <Button x:Name="btnGetCategory" Content="Show Category" HorizontalAlignment="Left" Margin="530,346,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.559,-0.298" Click="btnGetCategory_Click">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-0.037"/>
-                    <TranslateTransform X="-0.01" Y="-0.003"/>
-                </TransformGroup>
-            </Button.RenderTransform>
-        </Button>
-        <Label x:Name="lblGetCategory" Content="" HorizontalAlignment="Left" Margin="529,390,0,0" VerticalAlignment="Top" Width="86" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" RenderTransformOrigin="0.5,0.5">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.279"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <Label x:Name="lblSaveFile" Content="FileName" HorizontalAlignment="Left" Margin="714,370,0,0" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
-        <Button x:Name="btnSave" Content="Save To File" HorizontalAlignment="Left" Margin="888,414,0,0" VerticalAlignment="Top" Click="btnSave_Click"/>
-        <TextBox x:Name="tbFileName" HorizontalAlignment="Left" Height="26" Margin="814,370,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213"/>
-        <Label x:Name="lblSaveDirectory" Content="DIrectory Name" HorizontalAlignment="Left" Margin="680,296,0,0" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
-        <TextBox x:Name="tbDirectoryName" HorizontalAlignment="Left" Height="26" Margin="814,296,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213"/>
-        <CheckBox x:Name="cbAutoMatch" Content="AutoMatch" HorizontalAlignment="Left" Margin="402,426,0,0" VerticalAlignment="Top" Checked="cbAutoMatch_Checked" Unchecked="cbAutoMatch_Unchecked" ToolTip="Will automatically match/categorize the correspoding element for the other courses as you perform categorization"/>
-        <Button x:Name="btnRemoveCourse" Content="Remove Course" HorizontalAlignment="Left" Margin="944,130,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Click="btnRemoveCourse_Click">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-0.037"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Button.RenderTransform>
-        </Button>
+        Title="MainWindow" Height="550" Width="1120"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+         TextElement.FontWeight="Regular"
+         TextElement.FontSize="13"
+         TextOptions.TextFormattingMode="Ideal"
+         TextOptions.TextRenderingMode="Auto"
+         Background="{DynamicResource MaterialDesignPaper}"
+         FontFamily="{DynamicResource MaterialDesignFont}"
+        >
+    <Grid Background="#FFC2CCD6" Height="520">
+        <Label x:Name="lblInstructions" Content="Instructions" HorizontalAlignment="Left" Height="24" Margin="871,10,0,0" VerticalAlignment="Top" Width="190" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+        <materialDesign:Card x:Name="cardInstructions" Padding="1" Margin="872,40,49,372">
+            <ScrollViewer x:Name="scrollInstruction" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" Width="184">
+                <TextBlock x:Name="tblockInstructions" TextWrapping="Wrap" Height="90" Width="162" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" IsEnabled="False"/>
+            </ScrollViewer>
+        </materialDesign:Card>
+        <GroupBox x:Name="grpGetcontent" Header="Get Content" Padding="3" Margin="31,14,292,359" Background="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}">
+            <Canvas Background="#FFA6B9CD" Margin="0,0,0,0">
+                <TextBox x:Name="tbUrl" Height="24" TextWrapping="Wrap" Width="319" Canvas.Left="77" Canvas.Top="17"/>
+                <Label x:Name="lblUrl" Content="Url" Width="42" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Canvas.Left="10" Canvas.Top="17" Height="24" Opacity="0.75"/>
+                <Button x:Name="btnGetHTML" Content="Get content from page" RenderTransformOrigin="0.5,0.5" Click="btnGetHTML_Click" Canvas.Left="413" Canvas.Top="14" Height="28" Width="172">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.037"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+                <Label x:Name="lblCourses" Content="Course Codes" Width="83" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" RenderTransformOrigin="0.5,0.5" Height="25" Canvas.Top="52" Canvas.Left="10" Opacity="0.75">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0.279"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <TextBox x:Name="tbCourse" TextWrapping="Wrap" Width="183" Height="26" Canvas.Left="102" Canvas.Top="52"/>
+                <Button x:Name="btnAddCourse" Content="Add Course" RenderTransformOrigin="0.5,0.5" Click="btnAddCourse_Click" Canvas.Left="295" Canvas.Top="51" Height="26" Width="110">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.037"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+                <Button x:Name="btnRemoveCourse" Content="Remove Course" RenderTransformOrigin="0.5,0.5" Click="btnRemoveCourse_Click" Canvas.Left="615" Canvas.Top="89" Height="24" Width="135">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.037"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+                <ListBox x:Name="lboxCourses" Height="68" BorderThickness="1" Width="110" Canvas.Left="621" Background="Transparent" BorderBrush="#7F000000" Canvas.Top="10"/>
+            </Canvas>
+        </GroupBox>
+        <GroupBox x:Name="grpFilter" Header="Filtering                   " Padding="2" Margin="31,166,73,220" Background="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}">
+            <Canvas Background="#FF688099" Margin="0,0,0,1">
+                <Label x:Name="lblResut" Content="Result from parsing content" Width="167" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" RenderTransformOrigin="0.5,0.5" Canvas.Left="10" Canvas.Top="5" Height="26" Opacity="0.75">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <ScrollViewer x:Name="scrollResult" Height="58" Canvas.Left="10" Canvas.Top="36" Width="855">
+                    <TextBlock x:Name="tblockResult" TextWrapping="Wrap" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Height="122" Width="838"/>
+                </ScrollViewer>
+                <Button x:Name="btnFilter" Width="70" Height="70" Click="btnFilter_Click" Content="Filter" Canvas.Left="900" Canvas.Top="25"/>
+            </Canvas>
+        </GroupBox>
+        <GroupBox x:Name="grpCategorize" Header="Categorize" Padding="3" Margin="31,306,471,24" Background="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}">
+            <Canvas Background="#FFA6B9CD" Height="auto" >
+                <Label x:Name="lblCategory" Content="Categories" Width="87" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" RenderTransformOrigin="0.5,0.5" Canvas.Left="24" Canvas.Top="14" Opacity="0.75">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0.279"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <TextBox x:Name="tbCategory" TextWrapping="Wrap" Width="119" Height="24" Canvas.Top="58" Canvas.Left="10"/>
+                <Button x:Name="btnAddCategory" Content="Add Category" RenderTransformOrigin="0.525,0.478" Click="btnAddCategory_Click" Canvas.Left="11" Canvas.Top="95" Height="35">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.037"/>
+                            <TranslateTransform X="0" Y="-0.001"/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+                <Button x:Name="btnRemoveCategory" Content="Remove Category" RenderTransformOrigin="0.5,0.5" Click="btnRemoveCategory_Click" Canvas.Left="134" Canvas.Top="97" Height="33" Width="142">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+                <Button x:Name="btnSetCategory" Content="Set Category" RenderTransformOrigin="0.5,0.5" Click="btnSetCategory_Click" Canvas.Left="303" Canvas.Top="97" Height="33" Width="125">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+                <Button x:Name="btnGetCategory" Content="Show Category" RenderTransformOrigin="0.559,-0.298" Click="btnGetCategory_Click" Canvas.Left="453" Canvas.Top="20">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.037"/>
+                            <TranslateTransform X="-0.01" Y="-0.003"/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+                <Label x:Name="lblGetCategory" Content="" Width="86" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" RenderTransformOrigin="0.5,0.5" Canvas.Left="468" Canvas.Top="66" Opacity="0.75">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0.279"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <CheckBox x:Name="cbAutoMatch" Content="AutoMatch" Checked="cbAutoMatch_Checked" Unchecked="cbAutoMatch_Unchecked" ToolTip="Will automatically match/categorize the correspoding element for the other courses as you perform categorization" Canvas.Left="464" Canvas.Top="100"/>
+                <ListBox x:Name="lboxSorter"  RenderTransformOrigin="0.592,0.528" BorderThickness="1" Height="72" Width="125" IsSynchronizedWithCurrentItem="True" SelectionChanged="btnGetCategory_Click" Canvas.Left="303" Canvas.Top="10" BorderBrush="#7F000000"/>
+                <ListBox x:Name="lboxCategory" RenderTransformOrigin="0.592,0.528" BorderThickness="1" Height="72" Width="117" IsSynchronizedWithCurrentItem="True" Canvas.Left="145" Canvas.Top="10" BorderBrush="#7F000000"/>
+            </Canvas>
+        </GroupBox>
 
+        <GroupBox x:Name="grpSaveFile" Header="Save To File" Padding="3" Margin="678,306,73,24" Background="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}">
+            <Canvas Background="#FFA6B9CD" >
+                <Label x:Name="lblSaveFile" Content="FileName" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Width="94" Height="26" Canvas.Top="11" Canvas.Left="10" Opacity="0.75"/>
+                <TextBox x:Name="tbFileName" Height="26" TextWrapping="Wrap" Width="213" Canvas.Left="125" Canvas.Top="11"/>
+                <Label x:Name="lblSaveDirectory" Content="DIrectory Name" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Canvas.Left="10" Canvas.Top="50" Height="26" Width="94" Opacity="0.75"/>
+                <TextBox x:Name="tbDirectoryName" Height="26" TextWrapping="Wrap" Width="213" Canvas.Left="125" Canvas.Top="50"/>
+                <Button x:Name="btnSave" Content="Save To File" Click="btnSave_Click" Canvas.Left="154" Canvas.Top="98"/>
+            </Canvas>
+        </GroupBox>
     </Grid>
 </Window>

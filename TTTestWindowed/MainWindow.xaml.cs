@@ -16,29 +16,38 @@ namespace TTTestWindowed
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<UIElement> catogorizationGroup;
+        List<UIElement> catogorizationGroup;        // a list of UI elemnets that will be treated as a group to disable/enable before/after the user is ready to start categorizing the course info
+
+        List<string> courseList;                    // a list to store the course codes to search for in the retrieved html page
+        List<string> categoryList;                  // a list to store the categories that will be used when categorizing the course info that will be found
 
 
-        List<string> courseList;
-        List<string> categoryList;
-        List<Dictionary<string,string>> courseInfo;
-        //List<int> lboxSorterCategories; // parellel to the items in lboxSorter/regextResult
+        List<Dictionary<string,string>> courseInfo; // stores the course info before it is saved to the file, each dictionary is a course of key/value pairs, keys are category/fieldname, values are the details/fieldvalues
+        
 
-        List<GCalenderEntry> courses;
-        //List<string> regexResult;    // used for storing the result from the regex filter
-        List<int> regexResultCourseIndicator;
-        //List<KeyValuePair<string, int>> sortList;
-        SortListItemCollection sortList;
-        int numberOfDefaultCategories;
-        string htmlContentField;
+        List<GCalenderEntry> courses;               // not used
+        List<int> regexResultCourseIndicator;       
+        SortListItemCollection sortList;            // SortListItemCollection is defiend below. This is used to store the items that the user will be categorizing, which is the course details retrieved from the html parser once the filter button is clicked
+        int numberOfDefaultCategories;              // the number of pre-initialized catergories by the program. It is used when removing categorized to prevent user from deleting the defaults categories
+        string htmlContentField;                    // the content that is retrieved from the htmp page after parsing it for any text
 
-        public bool IntelligentMatch { get; set; }
+        public bool IntelligentMatch { get; set; }  // used for an auto-categorization feature, to intelligently categorize the courses details as the user categorizes the first 
 
+        /// <summary>
+        /// An inner class meant to act as a container for the items in the lboxSorter (ListBoxSorter) Control and will be binded as the itemsource to the control
+        /// </summary>
         public class SortListItemCollection : IEnumerable<string>
         {
+            // Fields
+
+            // both fields are below are parallel 
+            // They both will hold the same collction of items 
+            // and should both be updated if either one are updated
             List<KeyValuePair<string, int>> keyValuePairs;
             List<string> keys;
            
+            // Properties
+
             public KeyValuePair<string,int> this[int index]
             {
                 get => keyValuePairs[index];
@@ -50,21 +59,15 @@ namespace TTTestWindowed
 
             public int Count { get => keys.Count; }
 
+            // Constructor
             public SortListItemCollection()
             {
                 keyValuePairs = new List<KeyValuePair<string, int>>();
                 keys = new List<string>();
 
             }
-            public IEnumerator<string> GetEnumerator()
-            {
-                return keys.GetEnumerator();
-            }
 
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                return this.GetEnumerator();
-            }
+            // Methods
 
             internal void Clear()
             {
@@ -77,19 +80,33 @@ namespace TTTestWindowed
                 keyValuePairs.Add(keyValuePair);
                 keys.Add(keyValuePair.Key);
             }
+
+            public IEnumerator<string> GetEnumerator()
+            {
+                return keys.GetEnumerator();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+
         }
 
-
+        /// <summary>
+        /// Performs all the necessary bindings that are needed before the program runs
+        /// such as attaching the itemsource to any list box control
+        /// </summary>
         private void SetupBindings()
         {
             courseList = new List<string>();
             lboxCourses.ItemsSource = courseList;
 
 
-            categoryList = new List<string>() { "none", "CourseCode" };
-            categoryList.AddRange(GCalenderEntry.defField);
-            numberOfDefaultCategories = categoryList.Count;
-            lboxCategory.ItemsSource = categoryList;
+            categoryList = new List<string>() { "none", "CourseCode" };     // add two initial default field into the category list, that the user will need to use when categorizing the course details
+            categoryList.AddRange(GCalenderEntry.defField);                 // add the default field which are the common fields that google calender import tool recognizes as fields for an event
+            numberOfDefaultCategories = categoryList.Count;                 
+            lboxCategory.ItemsSource = categoryList;                        
 
             //sortList = new List<KeyValuePair<string, int>>();
             sortList = new SortListItemCollection();
@@ -131,6 +148,10 @@ namespace TTTestWindowed
             tblockInstructions.Text = "Messages Will Appear Here";
         }
 
+        /// <summary>
+        /// Being common operation for this application, this generic method takes a list box that has a binded list and adds an item to it.
+        /// It will also scroll the list box to the item that was recently added 
+        /// </summary>
         private void AddItemToScrollList<T>(T item, ListBox listBox, List<T> bindedList)
         {
             bindedList.Add(item);
@@ -140,13 +161,19 @@ namespace TTTestWindowed
             listBox.ScrollIntoView(listBox.SelectedItem);
         }
 
+
+        /// <summary>
+        /// Being common operation for this application, this generic method takes a list box that has a binded list and removes an item at an index. 
+        /// </summary>
         private void RemoveItemFromScrollList<T>(int removeIndex, ListBox listBox, List<T> bindedList)
         {
             bindedList.RemoveAt(removeIndex);
             listBox.Items.Refresh();
             
         }
-
+        /// <summary>
+        /// Not used
+        /// </summary>
         private void AddItemToScrollList<T>(T item, ScrollViewer viewer, ListBox listBox, List<T> bindedList)
         {
             bindedList.Add(item);
@@ -156,6 +183,9 @@ namespace TTTestWindowed
             listBox.ScrollIntoView(listBox.SelectedItem);
         }
 
+        /// <summary>
+        /// Not used
+        /// </summary>
         private void RemoveItemFromScrollList<T>(int removeIndex, ScrollViewer viewer, ListBox listBox, List<T> bindedList)
         {
             bindedList.RemoveAt(removeIndex);
@@ -163,14 +193,20 @@ namespace TTTestWindowed
             viewer.UpdateLayout();
         }
 
+        /// <summary>
+        /// Resets a list of text box UI elemnts
+        /// </summary>
         private void ResetTextSubControlGroup(List<TextBox> uIElements)
         {
             foreach (TextBox tb in uIElements)
             {
                 tb.Clear();
             }
-        }
 
+        }
+        /// <summary>
+        /// Resets a list of list box UI elemnts
+        /// </summary>
         private void ResetListSubControlGroup<T>(List<ListBox> uIElements)
         {
             foreach (ListBox lb in uIElements)
@@ -180,6 +216,9 @@ namespace TTTestWindowed
             }
         }
 
+        /// <summary>
+        /// Resets all the controls that are part of the categorization controls group. Clears text boxes and list boxes.  
+        /// </summary>
         private void ResetCatogorizationControls()
         {
 
@@ -206,6 +245,9 @@ namespace TTTestWindowed
 
         }
 
+        /// <summary>
+        /// Resets all the controls that are part of the sorting controls group  
+        /// </summary>
         private void ResetSortingControls()
         {
             //regexResult.Clear();
@@ -216,6 +258,9 @@ namespace TTTestWindowed
             regexResultCourseIndicator.Clear();
         }
 
+        /// <summary>
+        /// Resets all the controls that are part of the courses controls group  
+        /// </summary>
         private void ResetCoursesControls()
         {
             courseList.Clear();
@@ -240,11 +285,18 @@ namespace TTTestWindowed
             }
         }
 
+        /// <summary>
+        /// Checks if an index is within bound of a list 
+        /// </summary>
         private bool WithinBoundsOfItems<T>(int index, List<T> list)
         {
             return (index >= 0 && index < list.Count);
         }
 
+        /// <summary>
+        /// Given an index(of an item in the sortList collection), check what the corresponding course is.
+        /// Returns the index corresponding to where the course is found relative to the other courses on the html page. Otherwise it returns -1.
+        /// </summary>
         private int FindCorrespondingCourse(int index)
         {
             if (index < 0) 
@@ -271,7 +323,9 @@ namespace TTTestWindowed
         #endregion
 
 
-
+        /// <summary>
+        /// Retrives the html content from the page specified in tbUrl(textbox Url). 
+        /// </summary>
         private void btnGetHTML_Click(object sender, RoutedEventArgs e)
         {
             ResetInstructions();
@@ -313,7 +367,9 @@ namespace TTTestWindowed
 
         }
 
-
+        /// <summary>
+        /// Adds a course to the list of courses to search for - courseList. 
+        /// </summary>
         private void btnAddCourse_Click(object sender, RoutedEventArgs e)
         {
             ResetInstructions();
@@ -328,6 +384,9 @@ namespace TTTestWindowed
         }
 
 
+        /// <summary>
+        /// Removes the selected course from the list of courses to search for - courseList. 
+        /// </summary>
         private void btnRemoveCourse_Click(object sender, RoutedEventArgs e)
         {
             var item = lboxCourses.SelectedIndex;
@@ -337,6 +396,9 @@ namespace TTTestWindowed
             }
         }
 
+        /// <summary>
+        /// Performs a filter of the html page given the list of course to search for their relevant details.
+        /// </summary>
         private void btnFilter_Click(object sender, RoutedEventArgs e)
         {
 
@@ -439,6 +501,9 @@ namespace TTTestWindowed
             tbCategory.Clear();
         }
 
+        /// <summary>
+        /// Set the currently selected item in lboxSorter to the selected category in lboxCategory
+        /// </summary>
         private void btnSetCategory_Click(object sender, RoutedEventArgs e)
         {
             ResetInstructions();
@@ -518,7 +583,9 @@ namespace TTTestWindowed
 
         }
 
- 
+        /// <summary>
+        /// Shows the current category of the item selected in lboxSorter
+        /// </summary>
         private void btnGetCategory_Click(object sender, RoutedEventArgs e)
         {
             ResetInstructions();
@@ -532,12 +599,12 @@ namespace TTTestWindowed
                 tblockInstructions.Text = "Make sure to select the item to retrieve the category of in the list.";
                 return;
             }
-            //var category = lboxSorterCategories[index];
+            
             var category = sortList[index].Value;
             if (!WithinBoundsOfItems(category, categoryList))
             {
                 tblockInstructions.Text = "Something went wrong retrieveing the saved category.";
-                //lboxSorterCategories[index] = 0;
+                
                 sortList[index] = new KeyValuePair<string, int>(sortList[index].Key, 0);
 
                 return;
@@ -555,14 +622,12 @@ namespace TTTestWindowed
                 lboxCategory.ScrollIntoView(lboxCategory.SelectedItem);
             }
             
-            lboxSorter.Items.Refresh();
-            lboxSorter.UpdateLayout();
-            lboxSorter.ScrollIntoView(lboxCategory.SelectedItem);
-
 
         }
 
-
+        /// <summary>
+        /// Saves the content onto a file and directory specified by the user
+        /// </summary>
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             ResetInstructions();
